@@ -1,0 +1,16 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const html=fs.readFileSync(require('path').join(__dirname,'index.html'),'utf8');
+const code=html.match(/<script>([\s\S]*?)<\/script>/)[1];new vm.Script(code);new vm.Script(fs.readFileSync(require('path').join(__dirname,'sw.js'),'utf8'));
+const store=new Map();
+const fixture={properties:{meta:{},timeseries:Array.from({length:144},(_,i)=>({time:new Date(Date.now()+i*3600000).toISOString(),data:{instant:{details:{air_temperature:20,relative_humidity:87,wind_speed:5}},next_1_hours:{summary:{symbol_code:'partlycloudy_day'}}}}))}};
+function boot(fetch,storage=store){const nodes={};function el(){return {textContent:'',children:[],appendChild(x){this.children.push(x)},get firstChild(){return this.children[0]},removeChild(){this.children.shift()}}}const listeners={};vm.runInNewContext(code,{document:{querySelector:()=>nodes.label??=el(),getElementById:id=>nodes[id]??=el(),createElement:el},localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v)},Date,fetch,setTimeout,clearTimeout,AbortController,setInterval(){},window:{addEventListener:(k,v)=>listeners[k]=v},navigator:{}});return {nodes,listeners};}
+const tick=()=>new Promise(r=>setImmediate(r));
+(async()=>{
+let calls=0;let app=boot(async()=>{calls++;return {ok:true,json:async()=>fixture}});await tick();assert.equal(app.nodes.previsao.children.length,4);assert.equal(store.size,1);assert.equal(app.nodes['icone-atual'].textContent,'⛅');console.log('PASS: primeira consulta salva quatro dias');
+app=boot(async()=>{throw Error('offline')});await tick();assert.equal(app.nodes.previsao.children.length,4);assert.match(app.nodes.status.textContent,/salva/);console.log('PASS: reinício offline lê cache');
+const saved=[...store.values()][0];app.listeners.online();await tick();assert.equal([...store.values()][0],saved);console.log('PASS: falha de rede preserva cache');
+app=boot(async()=>{throw Error('offline')},new Map());await tick();assert.match(app.nodes.status.textContent,/Sem dados salvos/);console.log('PASS: primeira abertura sem rede informa ausência de dados');
+app=boot(async()=>({ok:true,json:async()=>({})}),new Map());await tick();assert.match(app.nodes.status.textContent,/Sem dados salvos/);console.log('PASS: resposta inválida não é salva');
+const old=JSON.parse(saved);old.recebidoEm=Date.now()-2*86400000;for(const d of old.previsao)d.data='2020-01-01';const oldStore=new Map([[[...store.keys()][0],JSON.stringify(old)]]);app=boot(async()=>{throw Error('offline')},oldStore);await tick();assert.match(app.nodes.status.textContent,/Dados antigos/);assert.equal(app.nodes.previsao.children.length,1);assert.match(app.nodes.previsao.children[0].textContent,/não cobre/);console.log('PASS: dados vencidos identificados e cartões antigos removidos');
+const broken={get(){throw Error('storage')},set(){throw Error('quota')}};app=boot(async()=>({ok:true,json:async()=>fixture}),broken);await tick();assert.equal(app.nodes.previsao.children.length,4);assert.match(app.nodes.status.textContent,/armazenamento indisponível/);console.log('PASS: bloqueio de armazenamento avisado sem perder renderização');
+})().catch(e=>{console.error(e);process.exitCode=1});
