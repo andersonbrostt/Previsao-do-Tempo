@@ -1,5 +1,5 @@
 'use strict';
-const CACHE = 'brostt-player-shell-v1';
+const CACHE = 'brostt-player-shell-v2';
 const PAGE = new URL('./index.html', self.location).href;
 const ROOT = new URL('./', self.location).href;
 self.addEventListener('install', event => {

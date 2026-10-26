@@ -31,3 +31,7 @@ Para desenvolvimento local: `python3 -m http.server 8080 --directory player-offl
 - Ao editar o HTML, incremente a versão CACHE em sw.js para preparar a nova versão. Não há garantia contra remoção de armazenamento pelo sistema.
 
 Fonte: MET Norway Locationforecast, CC BY 4.0. É necessária conexão com api.met.no para atualizar a previsão.
+
+## Tela cheia no Xibo
+
+O painel se ajusta à largura e à altura da região. Quando o conteúdo excede a altura, reduz o conjunto proporcionalmente e centraliza, mantendo todos os cartões e o rodapé visíveis. O ajuste é recalculado ao mudar a resolução ou os dados.

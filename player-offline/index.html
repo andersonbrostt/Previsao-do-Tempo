@@ -25,6 +25,11 @@ html,body{height:auto;min-height:100%;overflow:auto}
  .dia-descricao{font-size:13px}.dia-temperaturas{font-size:22px}
  .detalhes{font-size:14px}.rodape{font-size:10px;gap:8px}
 }
+
+/* Xibo: enquadra todo o painel na região, sem barras nem cortes. */
+html,body{width:100%;height:100%;min-height:0;overflow:hidden}
+body{background:radial-gradient(ellipse at 75% 12%,#285e8d 0%,transparent 48%),radial-gradient(ellipse at 10% 100%,#176977 0%,transparent 45%),linear-gradient(145deg,#071629,#123454 75%,#0a233d)}
+#brostt-clima{position:absolute;top:0;left:0;width:100%;transform-origin:top left;background:transparent}
 </style></head><body><div id="brostt-clima"><header class="topo"><div><div id="cidade" class="cidade">São Paulo</div><div class="subtitulo">Previsão do tempo</div></div><div id="status" class="status">Carregando...</div></header><main class="principal"><div class="agora-label">Agora</div><div class="atual-centro"><span id="icone-atual" class="icone-atual">🌤️</span><span id="temperatura" class="temperatura">--°</span></div><div id="descricao" class="descricao">Aguardando dados</div><div class="detalhes"><span id="umidade">💧 Umidade: --</span><span id="vento">💨 Vento: --</span></div></main><section><div class="previsao-titulo">Próximos dias</div><div id="previsao" class="previsao"></div></section><footer class="rodape"><span id="atualizacao">Última sincronização: --</span><span id="offline-app">Cache da página requer HTTPS e player compatível</span><span>Dados: MET Norway · CC BY 4.0 · met.no</span></footer></div><script>
 (function(){
 'use strict';
@@ -93,6 +98,32 @@ if(window.location.protocol!=='file:'&&'serviceWorker' in navigator&&window.isSe
  }).catch(function(){document.getElementById('offline-app').textContent='Cache da página indisponível neste player';});
 }
 
+})();
+</script>
+<script>
+(function(){
+ 'use strict';
+ var painel=document.getElementById('brostt-clima');
+ var agendado=false;
+ function ajustar(){
+  agendado=false;
+  var largura=document.documentElement.clientWidth;
+  var altura=document.documentElement.clientHeight;
+  if(!largura||!altura)return;
+  painel.style.transform='none';
+  painel.style.left='0px';
+  painel.style.width=largura+'px';
+  var alturaConteudo=Math.max(painel.scrollHeight,painel.offsetHeight);
+  var escala=Math.min(1,altura/Math.max(1,alturaConteudo));
+  painel.style.transform='scale('+escala+')';
+  painel.style.left=((largura-largura*escala)/2)+'px';
+ }
+ function agendar(){if(!agendado){agendado=true;requestAnimationFrame(ajustar);}}
+ window.addEventListener('resize',agendar);
+ window.addEventListener('load',agendar);
+ if(typeof MutationObserver!=='undefined')new MutationObserver(agendar).observe(painel,{childList:true,characterData:true,subtree:true});
+ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(agendar);
+ agendar();
 })();
 </script>
 </body>
