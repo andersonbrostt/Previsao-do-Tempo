@@ -1,0 +1,61 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Brostt Clima — Centro</title><style>*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#071a30;color:white;font-family:Arial,Helvetica,sans-serif}#brostt-clima{height:100vh;height:100dvh;display:flex;flex-direction:column;padding:clamp(14px,2.6vw,42px) clamp(18px,4vw,75px);background:radial-gradient(ellipse at 75% 12%,#285e8d 0%,transparent 48%),radial-gradient(ellipse at 10% 100%,#176977 0%,transparent 45%),linear-gradient(145deg,#071629,#123454 75%,#0a233d)}.topo{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}.cidade{font-size:clamp(26px,3.2vw,56px);font-weight:750;letter-spacing:-1px}.subtitulo{font-size:clamp(14px,1.35vw,24px);color:#bdd5e8;margin-top:5px}.status{font-size:clamp(11px,1vw,17px);color:#c9e7f5;padding:9px 14px;background:#ffffff16;border-radius:25px}.principal{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:0}.agora-label{font-size:clamp(17px,2vw,32px);font-weight:600;color:#b9e2fa;letter-spacing:.16em;text-transform:uppercase}.atual-centro{display:flex;align-items:center;justify-content:center;gap:clamp(10px,2vw,34px)}.icone-atual{font-size:clamp(90px,14vw,220px);line-height:1.15}.temperatura{font-size:clamp(115px,19vw,300px);font-weight:300;line-height:1.05;letter-spacing:-.09em;padding-right:.09em}.descricao{font-size:clamp(23px,3vw,48px);font-weight:600}.detalhes{display:flex;gap:clamp(18px,4vw,75px);margin-top:clamp(8px,1.8vh,24px);font-size:clamp(17px,1.9vw,29px);color:#cfe6f5}.previsao-titulo{font-size:clamp(19px,2vw,32px);font-weight:700;margin-bottom:clamp(10px,1.5vh,20px)}.previsao{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(10px,1.5vw,24px)}.dia{min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(4px,.7vh,12px);text-align:center;padding:clamp(10px,1.5vw,24px) 4px;background:#ffffff14;border:1px solid #ffffff28;border-radius:clamp(14px,2vw,28px)}.dia-nome{font-size:clamp(19px,2.3vw,37px);font-weight:700;text-transform:capitalize}.dia-icone{font-size:clamp(47px,6vw,100px);line-height:1.2}.dia-descricao{font-size:clamp(13px,1.45vw,24px);color:#d2e8f7}.dia-temperaturas{font-size:clamp(22px,2.7vw,44px);font-weight:700;white-space:nowrap}.rodape{display:flex;justify-content:space-between;gap:10px;color:#a8c8df;font-size:clamp(10px,.9vw,15px);padding-top:clamp(8px,1.3vh,18px)}@media(max-height:650px) and (min-aspect-ratio:1/1){#brostt-clima{padding:9px 24px}.cidade{font-size:clamp(20px,4vh,32px)}.subtitulo{font-size:12px}.agora-label{font-size:15px}.icone-atual{font-size:clamp(48px,17vh,110px)}.temperatura{font-size:clamp(70px,25vh,150px)}.descricao{font-size:clamp(17px,4vh,25px)}.detalhes{font-size:14px;margin-top:4px}.previsao-titulo{font-size:17px;margin-bottom:6px}.dia{padding:5px;gap:2px}.dia-nome{font-size:17px}.dia-icone{font-size:clamp(32px,10vh,60px)}.dia-descricao{font-size:12px}.dia-temperaturas{font-size:21px}.rodape{padding-top:5px;font-size:10px}}@media(max-aspect-ratio:4/5){#brostt-clima{padding:16px}.status{max-width:42%;font-size:10px}.principal{flex:1}.atual-centro{flex-direction:column;gap:0}.icone-atual{font-size:clamp(75px,19vw,140px)}.temperatura{font-size:clamp(90px,22vw,160px)}.descricao{font-size:clamp(19px,5vw,30px)}.detalhes{flex-wrap:wrap;justify-content:center;font-size:14px;gap:12px}.previsao{grid-template-columns:repeat(2,minmax(0,1fr))}.dia-nome{font-size:19px}.dia-icone{font-size:44px}.dia-temperaturas{font-size:22px}.dia-descricao{font-size:12px}.rodape{font-size:9px}}
+/* Layout fluido: cada seção ocupa seu próprio espaço, sem sobreposição. */
+html,body{height:auto;min-height:100%;overflow:auto}
+#brostt-clima{height:auto;min-height:100vh;min-height:100dvh;gap:clamp(16px,2.5vh,32px)}
+.topo,.principal,#brostt-clima>section,.rodape{flex-shrink:0}
+.principal{flex:1 0 auto;min-height:auto;padding-block:clamp(8px,2vh,24px);gap:8px}
+.icone-atual{font-size:clamp(64px,min(14vw,20vh),200px)}
+.temperatura{font-size:clamp(88px,min(19vw,28vh),280px)}
+.descricao{font-size:clamp(22px,min(3vw,5vh),44px)}
+.detalhes{flex-wrap:wrap;justify-content:center;gap:8px clamp(16px,3vw,60px);margin-top:8px}
+.dia{padding:clamp(10px,1.5vh,20px) 8px}
+.dia-icone{font-size:clamp(40px,min(6vw,10vh),90px)}
+.dia-descricao{overflow-wrap:anywhere}
+.rodape{flex-wrap:wrap;padding-top:0}
+@media(max-width:600px){
+ #brostt-clima{padding:16px;gap:20px}
+ .topo{gap:12px}.cidade{font-size:clamp(24px,7vw,36px)}
+ .status{max-width:42%;font-size:10px;padding:8px 10px}
+ .atual-centro{flex-direction:row;gap:12px}
+ .icone-atual{font-size:clamp(60px,20vw,100px)}
+ .temperatura{font-size:clamp(88px,25vw,140px)}
+ .previsao{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ .dia{padding:14px 8px;gap:6px}
+ .dia-nome{font-size:19px}.dia-icone{font-size:44px}
+ .dia-descricao{font-size:13px}.dia-temperaturas{font-size:22px}
+ .detalhes{font-size:14px}.rodape{font-size:10px;gap:8px}
+}
+</style></head><body><div id="brostt-clima"><header class="topo"><div><div id="cidade" class="cidade">Rio de Janeiro</div><div class="subtitulo">Previsão do tempo</div></div><div id="status" class="status">Carregando...</div></header><main class="principal"><div class="agora-label">Agora</div><div class="atual-centro"><span id="icone-atual" class="icone-atual">🌤️</span><span id="temperatura" class="temperatura">--°</span></div><div id="descricao" class="descricao">Aguardando dados</div><div class="detalhes"><span id="umidade">💧 Umidade: --</span><span id="vento">💨 Vento: --</span></div></main><section><div class="previsao-titulo">Próximos dias</div><div id="previsao" class="previsao"></div></section><footer class="rodape"><span id="atualizacao">Última sincronização: --</span><span>Dados: MET Norway · CC BY 4.0 · met.no</span></footer></div><script>
+(function(){
+'use strict';
+// CONFIGURAÇÃO: altere os três campos abaixo para outra cidade.
+var CIDADE='São Paulo';
+var LAT=-23.5505;
+var LON=-46.6333;
+var FUSO='America/Sao_Paulo';
+var INTERVALO_ATUALIZACAO=60*60*1000;
+var INTERVALO_VERIFICACAO=15*60*1000;
+var CHAVE_CACHE='brostt_clima_central_5dias_v1_'+LAT+'_'+LON;
+var API='https://api.met.no/weatherapi/locationforecast/2.0/compact?lat='+LAT+'&lon='+LON;
+var ultimoSucesso=0;
+var ocupado=false;
+var diasSemana=['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado'];
+var $=function(id){return document.getElementById(id);};
+$('cidade').textContent=CIDADE;
+function dataLocal(iso){return new Date(iso).toLocaleDateString('en-CA',{timeZone:FUSO,year:'numeric',month:'2-digit',day:'2-digit'});}
+function diaDaSemana(iso){return new Date(iso).toLocaleDateString('pt-BR',{timeZone:FUSO,weekday:'short'}).replace('.','');}
+function horaLocal(iso){return Number(new Date(iso).toLocaleTimeString('en-GB',{timeZone:FUSO,hour:'2-digit',hour12:false}));}
+function icone(c){c=String(c||'');if(c.indexOf('thunder')>=0)return '⛈️';if(c.indexOf('snow')>=0||c.indexOf('sleet')>=0)return '❄️';if(c.indexOf('rain')>=0)return '🌧️';if(c.indexOf('fog')>=0)return '🌫️';if(c.indexOf('partlycloudy')>=0)return '⛅';if(c.indexOf('cloudy')>=0)return '☁️';if(c.indexOf('fair')>=0)return '🌤️';return '☀️';}
+function descricao(c){c=String(c||'');if(c.indexOf('thunder')>=0)return 'Trovoadas';if(c.indexOf('snow')>=0)return 'Neve';if(c.indexOf('sleet')>=0)return 'Precipitação mista';if(c.indexOf('rain')>=0)return 'Chuva';if(c.indexOf('fog')>=0)return 'Neblina';if(c.indexOf('partlycloudy')>=0)return 'Parcialmente nublado';if(c.indexOf('cloudy')>=0)return 'Nublado';if(c.indexOf('fair')>=0)return 'Poucas nuvens';return 'Ensolarado';}
+function codigoSimbolo(item){var s=item.data&&item.data.next_1_hours&&item.data.next_1_hours.summary;if(!s)s=item.data&&item.data.next_6_hours&&item.data.next_6_hours.summary;if(!s)s=item.data&&item.data.next_12_hours&&item.data.next_12_hours.summary;return s&&s.symbol_code||'clearsky_day';}
+function criarResumo(dados){var serie=dados&&dados.properties&&dados.properties.timeseries;if(!serie||!serie.length)throw new Error('Previsão vazia');var primeiro=serie[0];var detalhes=primeiro.data.instant.details;var atualCodigo=codigoSimbolo(primeiro);var grupos={};var ordem=[];var hoje=dataLocal(primeiro.time);function incluir(item){var dia=dataLocal(item.time);if(!grupos[dia]){grupos[dia]={data:dia,nome:diaDaSemana(item.time),min:Infinity,max:-Infinity,simbolo:'',distancia:999};ordem.push(dia);}var g=grupos[dia];var temp=item.data&&item.data.instant&&item.data.instant.details&&item.data.instant.details.air_temperature;if(typeof temp==='number'){g.min=Math.min(g.min,temp);g.max=Math.max(g.max,temp);}var distancia=Math.abs(horaLocal(item.time)-12);if(distancia<g.distancia){g.distancia=distancia;g.simbolo=codigoSimbolo(item);}}
+ serie.forEach(incluir);var previsao=[];ordem.forEach(function(chave){var g=grupos[chave];if(previsao.length<5&&isFinite(g.min)&&isFinite(g.max))previsao.push({nome:g.data===hoje?'Hoje':g.nome,icone:icone(g.simbolo),descricao:descricao(g.simbolo),max:Math.round(g.max),min:Math.round(g.min)});});return {temperatura:Math.round(detalhes.air_temperature),umidade:Math.round(detalhes.relative_humidity),vento:Math.round(detalhes.wind_speed*3.6),icone:icone(atualCodigo),descricao:descricao(atualCodigo),previsao:previsao,recebidoEm:Date.now(),fonteAtualizadaEm:dados.properties.meta&&dados.properties.meta.updated_at||null};}
+function renderizar(dados,cache){$('temperatura').textContent=dados.temperatura+'°';$('icone-atual').textContent=dados.icone;$('descricao').textContent=dados.descricao;$('umidade').textContent='💧 Umidade: '+dados.umidade+'%';$('vento').textContent='💨 Vento: '+dados.vento+' km/h';var area=$('previsao');while(area.firstChild)area.removeChild(area.firstChild);dados.previsao.filter(function(d){return d.nome!=='Hoje';}).slice(0,4).forEach(function(d){var card=document.createElement('div');card.className='dia';var nome=document.createElement('div');nome.className='dia-nome';nome.textContent=d.nome;var ic=document.createElement('div');ic.className='dia-icone';ic.textContent=d.icone;var desc=document.createElement('div');desc.className='dia-descricao';desc.textContent=d.descricao;var temperaturas=document.createElement('div');temperaturas.className='dia-temperaturas';temperaturas.textContent=d.max+'° / '+d.min+'°';card.appendChild(nome);card.appendChild(ic);card.appendChild(desc);card.appendChild(temperaturas);area.appendChild(card);});$('atualizacao').textContent='Última sincronização: '+new Date(dados.recebidoEm).toLocaleString('pt-BR',{timeZone:FUSO});$('status').textContent=cache?'Exibindo previsão salva':'Previsão sincronizada';}
+function lerCache(){try{var texto=localStorage.getItem(CHAVE_CACHE);return texto?JSON.parse(texto):null;}catch(e){return null;}}
+function salvarCache(dados){try{localStorage.setItem(CHAVE_CACHE,JSON.stringify(dados));}catch(e){}}
+function atualizar(){if(ocupado)return;var salvo=lerCache();if(salvo&&Date.now()-salvo.recebidoEm<INTERVALO_ATUALIZACAO){renderizar(salvo,true);return;}ocupado=true;$('status').textContent=salvo?'Verificando atualização...':'Buscando previsão...';fetch(API,{cache:'no-cache'}).then(function(resposta){if(!resposta.ok)throw new Error('HTTP '+resposta.status);return resposta.text();}).then(function(texto){var dados=criarResumo(JSON.parse(texto));ultimoSucesso=dados.recebidoEm;salvarCache(dados);renderizar(dados,false);}).catch(function(erro){var antigo=lerCache();if(antigo){renderizar(antigo,true);$('status').textContent='Offline · previsão salva';}else{$('status').textContent='Sem conexão';$('descricao').textContent='Não foi possível carregar a previsão';}}).then(function(){ocupado=false;});}
+var inicial=lerCache();if(inicial){ultimoSucesso=inicial.recebidoEm;renderizar(inicial,true);}atualizar();setInterval(atualizar,INTERVALO_VERIFICACAO);
+})();
+</script>
+</body>
+</html>
