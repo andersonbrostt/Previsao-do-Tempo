@@ -84,7 +84,10 @@ atualizar(false);
 setInterval(function(){atualizar(false);},INTERVALO_VERIFICACAO);
 window.addEventListener('online',function(){atualizar(true);});
 window.addEventListener('offline',function(){var salvo=lerCache();if(salvo){renderizar(salvo,true);$('status').textContent+=' · offline';}});
-if('serviceWorker' in navigator&&window.isSecureContext){
+if(window.location.protocol==='file:'){
+ document.getElementById('offline-app').textContent='Arquivo local · mantenha o armazenamento do player habilitado';
+}
+if(window.location.protocol!=='file:'&&'serviceWorker' in navigator&&window.isSecureContext){
  navigator.serviceWorker.register('./sw.js').then(function(){return navigator.serviceWorker.ready;}).then(function(){
   var nota=document.getElementById('offline-app');nota.textContent='Aplicação disponível offline neste navegador';
  }).catch(function(){document.getElementById('offline-app').textContent='Cache da página indisponível neste player';});

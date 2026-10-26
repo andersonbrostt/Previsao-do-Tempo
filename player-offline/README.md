@@ -2,7 +2,18 @@
 
 Projeto completo em `index.html`, sem fontes, imagens ou bibliotecas externas. Mostra condições atuais e os próximos quatro dias. Altere CIDADE, LAT, LON e FUSO no HTML para configurar o local.
 
-## Uso
+## Instalação no BrosttPlayer por arquivo ou pacote
+
+1. Baixe `brosttplayer-previsao.zip` nesta pasta e importe no player. Se ele aceitar somente HTML, extraia o ZIP e importe `index.html`.
+2. Defina `index.html` como entrada do pacote, se o player solicitar.
+3. Abra com internet e aguarde a primeira sincronização. Depois desconecte a rede e teste a reprodução, o fechamento e a reabertura do conteúdo.
+4. Mantenha o armazenamento DOM/localStorage habilitado na WebView do player. Não limpe os dados entre reproduções e mantenha a mesma origem/caminho do conteúdo.
+
+Este pacote é autossuficiente para exibição: CSS, JavaScript e ícones estão no HTML. Apenas a atualização da previsão usa a internet. `sw.js` é opcional para hospedagem HTTPS e não é usado quando o player abre `file://`.
+
+O código do BrosttPlayer não foi fornecido: a persistência real após reinício precisa ser verificada no dispositivo. Se o player bloquear localStorage, o painel avisa e mantém apenas cache em memória. Se bloquear as consultas à API a partir de arquivo local, será necessário permitir a origem no player ou integrar a atualização pelo aplicativo.
+
+## Uso por URL HTTPS
 
 Hospede esta pasta por HTTPS, mantendo `index.html` e `sw.js` juntos. Abra com internet uma vez e aguarde uma previsão sincronizada e a mensagem de aplicação disponível offline. Depois, teste desconectando a rede e recarregando a mesma URL no mesmo perfil do player.
 
